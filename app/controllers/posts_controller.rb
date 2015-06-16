@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
     # 1. set up instance variable for action
     # 2. redirect based on some condition
+  before_action :require_user, except: [:show, :index]
 
   def index
     @posts = Post.all
@@ -18,7 +19,7 @@ class PostsController < ApplicationController
   def create
     # post = Post.new(params[:post]) -> This would be normal, but instead we use a different method for strong parameters
     @post = Post.new(post_params)
-    @post.creator = User.first # TODO: change once we have authentication (hard coded for now)
+    @post.creator = current_user
 
     if @post.save
       flash[:notice] = "Your post was created."

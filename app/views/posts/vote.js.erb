@@ -1,5 +1,5 @@
 <% if @vote.valid? %>
-  $('#post_<%= @post.id %>_votes').html('<%= @post.total_votes %> votes') // $('#post_1_votes').html('2 votes')
-<% else %>
+  $('#post_<%= @post.slug %>_votes').html('<%= @post.total_votes %> votes') // $('#post_1_votes').html('2 votes')
+<% else %>                                                                  // now changed from post.id to post.slug, because we have different identifier
   alert('You can only vote on a post once.');
 <% end %>

@@ -28,4 +28,5 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You don't have permission to perform this action."
     redirect_to root_path
   end
+
 end

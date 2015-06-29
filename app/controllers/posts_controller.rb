@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     # 1. set up instance variable for action
     # 2. redirect based on some condition
   before_action :require_user, except: [:show, :index]
+  before_action :require_creator, only: [:edit, :update]
 
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse
@@ -67,5 +68,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by slug: params[:id]
+  end
+
+  def require_creator
+    access_denied unless logged_in? and (current_user == @post.creator || current_user.admin?)
   end
 end

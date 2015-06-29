@@ -40,3 +40,6 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 .idea
+
+
+/config/local_env.yml

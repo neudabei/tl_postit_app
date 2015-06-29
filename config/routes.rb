@@ -7,6 +7,9 @@ PostitTemplate::Application.routes.draw do
 
   get '/register', to: 'users#new'
 
+  get '/pin', to: 'sessions#pin'
+  post '/pin', to: 'sessions#pin'
+
   resources :posts, except: [:destroy] do
     member do
       post 'vote' # /posts/3/vote

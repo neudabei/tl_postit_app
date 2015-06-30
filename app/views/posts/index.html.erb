@@ -8,9 +8,9 @@
   <% @pages.times do |n| %>
     <ul>
       <% if (params[:offset].nil? && n == 0) || params[:offset].to_s == (n * Post::PER_PAGE).to_s %>
-        <li class="disabled"> <%= link_to "#{n+1}" %></li>
+        <li class="active"> <%= link_to "#{n+1}" %></li>
       <% else %>
-        <li class="active"><%= link_to "#{n+1}", posts_path(offset: n * Post::PER_PAGE) %></li>
+        <li><%= link_to "#{n+1}", posts_path(offset: n * Post::PER_PAGE) %></li>
       <% end %>
     </ul>
   <% end %>

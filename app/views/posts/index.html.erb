@@ -3,3 +3,15 @@
 <% @posts.each do |post| %>
   <%= render "post", post: post %>
 <% end %>
+
+<div class="pagination">
+  <% @pages.times do |n| %>
+    <ul>
+      <% if (params[:offset].nil? && n == 0) || params[:offset].to_s == (n * Post::PER_PAGE).to_s %>
+        <li class="disabled"> <%= link_to "#{n+1}" %></li>
+      <% else %>
+        <li class="active"><%= link_to "#{n+1}", posts_path(offset: n * Post::PER_PAGE) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
